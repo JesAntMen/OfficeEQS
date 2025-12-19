@@ -1,0 +1,50 @@
+<header class="fixed w-full">
+  <div class="flex flex-col bg-cyan-100/30 backdrop-blur-sm">
+    <div class="flex justify-between w-full h-20 px-5">
+      <div class="w-52 h-20 p-2.5">
+        <a href="">
+          <img class="w-full h-full" src="https://www.eqsinternational.com/Image/LogoEQS.webp" alt="">
+        </a>
+      </div>
+      <div class="flex items-center justify-center h-full">
+        <div class="h-full hidden lg:inline-block">
+          <nav class="h-full">
+            <ul class="flex items-center justify-center text-center h-full gap-5">
+              @for (orden of encabezado; track orden.id) {
+              <li class="font-semibold hover:font-bold hover:scale-110">
+                <a class="" href="">{{orden.nombre}}</a>
+              </li>
+              }
+              <li>
+                <span class="material-symbols-outlined cursor-pointer hover:font-bold hover:scale-120">
+                  account_circle
+                </span>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="flex items-center justify-center pl-5 lg:hidden h-full">
+          <button class="cursor-pointer h-full" (click)="toggleMenu()">
+            <span class="material-symbols-outlined">
+              {{ menuOpen ? 'close' : 'dehaze' }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="p-7.5 lg:hidden h-screen" [class.hidden]="!menuOpen">
+      <ul class="flex flex-col h-full gap-5">
+        @for (orden of encabezado; track orden.id) {
+        <li class="font-semibold hover:font-bold">
+          <a href="">{{ orden.nombre }}</a>
+        </li>
+        }
+        <li>
+          <span class="material-symbols-outlined cursor-pointer hover:scale-110">
+            account_circle
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
