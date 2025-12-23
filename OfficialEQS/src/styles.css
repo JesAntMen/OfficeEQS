@@ -2,4 +2,5 @@
 @import "tailwindcss";
 *{
   color: #000066;
+  font-family: "Poppins", sans-serif;
 }

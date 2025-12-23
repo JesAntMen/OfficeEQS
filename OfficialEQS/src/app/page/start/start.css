@@ -1,0 +1,10 @@
+*{
+  color: white;
+}
+h1{
+  font-size: 25px;
+}
+button,span,p{
+  font-size: 18px;
+  color: white;
+}
