@@ -8,3 +8,6 @@ button,span,p{
   font-size: 18px;
   color: white;
 }
+.swiper-container{
+  z-index: 1;
+}

@@ -15,9 +15,19 @@ type Encabezado = {
 export class Header {
 
   menuOpen = false;
+  isOpenLogin = false;
+
+  toggleMenuLogin(){
+    this.isOpenLogin = !this.isOpenLogin
+    this.closeMenu();
+  }
+  closeMenuLogin(){
+    this.isOpenLogin = false
+  }
 
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+    this.closeMenuLogin();
   }
 
   closeMenu() {
