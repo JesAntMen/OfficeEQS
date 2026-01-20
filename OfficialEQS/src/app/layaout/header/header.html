@@ -2,7 +2,7 @@
   <div class="flex flex-col bg-cyan-100/30 backdrop-blur-sm">
     <div class="flex justify-between w-full h-20 px-5">
       <div class="w-52 p-2.5">
-        <a href="">
+        <a routerLink="/">
           <img class="w-full h-full" src="https://www.eqsinternational.com/Image/LogoEQS.webp" alt="">
         </a>
       </div>
@@ -12,7 +12,10 @@
             <ul class="flex items-center justify-center text-center h-full gap-5">
               @for (orden of encabezado; track orden.id) {
               <li class="font-semibold hover:font-bold hover:scale-110">
-                <a class="" href="">{{orden.nombre}}</a>
+                <a (click)="closeMenu(); closeMenuLogin()" routerLinkActive="font-bold"
+                  [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }" [routerLink]="orden.ruta">
+                  {{ orden.nombre }}
+                </a>
               </li>
               }
               <li>
@@ -40,7 +43,10 @@
     <ul class="flex flex-col h-full gap-5">
       @for (orden of encabezado; track orden.id) {
       <li class="font-semibold hover:font-bold">
-        <a href="">{{ orden.nombre }}</a>
+        <a (click)="closeMenu(); closeMenuLogin()" routerLinkActive="font-bold underline"
+          [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }" [routerLink]="orden.ruta">
+          {{ orden.nombre }}
+        </a>
       </li>
       }
       <li>
@@ -55,7 +61,8 @@
   }
   @if(isOpenLogin){
   <div class="h-screen flex flex-col bg-cyan-100/30 backdrop-blur-sm items-center justify-center">
-    <div class="flex flex-col border-2 border-[#000066] items-center gap-2.5 justify-center  shadow-xl rounded-lg  bg-cyan-100/30 p-7">
+    <div
+      class="flex flex-col border-2 border-[#000066] items-center gap-2.5 justify-center  shadow-xl rounded-lg  bg-cyan-100/30 p-7">
       <div class="">
         <span class="material-symbols-outlined icon-big">
           account_circle

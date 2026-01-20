@@ -1,0 +1,103 @@
+<div class="w-full flex flex-col">
+
+    <!--VISIÓN-->
+    <section class="w-full h-screen flex md:flex-col lg:flex-row">
+        <div class="hidden  flex-1 w-full h-full  md:flex items-center justify-center">
+            <div class="w-full h-[80%] flex items-center justify-center">
+                <img class="h-full" src="https://www.eqsinternational.com/Image/Calidad.webp" alt="" />
+            </div>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center bg-amber-600 w-full h-full">
+            <div class="m-5 bg-red-400 p-5 flex flex-col items-center justify-center gap-2.5">
+                <h1 class="text-[25px] font-bold"> VISIÓN</h1>
+                <p class="text-justify">
+                    Lograr reconocimiento de nuestros clientes por nuestra efectividad para su
+                    cumplimiento Normativo, así como en la Certificación y Continua Mejora de sus Procesos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--MISIÓN-->
+    <section class="w-full h-screen flex md:flex-col lg:flex-row">
+
+        <div class="hidden md:flex flex-1 w-full h-full items-center justify-center
+              order-1 lg:order-2">
+            <div class="w-full h-[80%] flex items-center justify-center">
+                <img class="h-full" src="https://www.eqsinternational.com/Image/Calidad.webp" alt="" />
+            </div>
+        </div>
+
+        <!-- TEXTO: abajo en md; izquierda en lg -->
+        <div class="flex-1 flex items-center justify-center bg-amber-600 w-full h-full
+              order-2 lg:order-1">
+            <div class="m-5 bg-red-400 p-5 flex flex-col items-center justify-center gap-2.5">
+                <h1 class="text-[25px] font-bold">MISIÓN</h1>
+                <p class="text-justify">
+                    Generar valor a nuestros clientes a través de Consultoría, Auditoría y Capacitación
+                    especializada, que asegure su cumplimiento normativo , la certificación de sus sitemas y
+                    la continua mejora de sus procesos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--POLITICA INTEGRAL-->
+    <section class="w-full h-screen flex md:flex-col lg:flex-row">
+        <div class="hidden flex-1 w-full h-full md:flex items-center justify-center">
+            <div class="w-full h-[80%] flex items-center justify-center">
+                <img class="h-full" src="https://www.eqsinternational.com/Image/Calidad.webp" alt="" />
+            </div>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center bg-amber-600 w-full h-full">
+            <div class="m-5 bg-red-400 p-5 flex flex-col items-center justify-center gap-2.5">
+                <h1 class="text-[25px] font-bold"> POLÍTICA INTEGRAL</h1>
+                <p class="text-justify">
+                    En <b>Sistemas Integrales de Calidad, Seguridad y Ambiente, S.A de C.V.</b>
+                    proporcionamos Servicios de <b>Capacitación, Consultoría, Comercio Internacional
+                        y Verificación de Sistemas de Gestión.
+                    </b>
+                    <br><br>
+                    Estamos comprometidos a cumplir requisitos que nos aplican y a mejorar continuamente
+                    nuestros procesos a fin de lograr los objetivos de nuestros clientes y de nuestra empresa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="w-full h-screen flex items-center justify-center bg-red-300 relative" (click)="closeCard()">
+        <!-- backdrop solo cuando hay una card abierta (ideal para móvil) -->
+        @if (openCardId !== null) {
+        <div class="fixed inset-0 z-10 lg:hidden" aria-hidden="true"></div>
+        }
+        <swiper-container class="mySwiper w-full max-w-6xl relative z-20" navigation="true"
+            pagination='{"clickable": true}' grab-cursor="true" slides-per-view="1" space-between="10" breakpoints='{
+        "0":    { "slidesPerView": 1, "spaceBetween": 10 },
+        "640":  { "slidesPerView": 2, "spaceBetween": 10 },
+        "1024": { "slidesPerView": 3, "spaceBetween": 24 }
+      }' (swiperslidechange)="closeCard()">
+            @for (cards of card; track cards.id) {
+            <swiper-slide class="flex items-center justify-center py-6">
+                <!-- button para que en móvil sea tap-friendly -->
+                <button type="button" class="group relative w-80 h-80 rounded-xl overflow-hidden shadow-xl"
+                    (click)="toggleCard(cards.id); $event.stopPropagation()">
+                    <!-- imagen -->
+                    <img class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+                        [class.opacity-0]="openCardId === cards.id" [src]="cards.link" alt="" />
+
+                    <!-- overlay texto -->
+                    <div class="absolute inset-0 bg-amber-200 p-5 flex flex-col items-center justify-center text-center
+                     opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        [class.opacity-100]="openCardId === cards.id">
+                        <h2 class="text-xl font-bold">{{ cards.titulo }}</h2>
+                        <p class="mt-2">{{ cards.text }}</p>
+                    </div>
+                </button>
+            </swiper-slide>
+            }
+        </swiper-container>
+    </section>
+</div>

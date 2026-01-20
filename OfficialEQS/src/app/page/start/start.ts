@@ -1,6 +1,5 @@
 import { NgClass } from '@angular/common';
 import { Component,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import { ContactUs } from '../contact-us/contact-us';
 
 
 type ColorImage = {
@@ -14,7 +13,7 @@ type ColorImage = {
 
 @Component({
   selector: 'app-start',
-  imports: [NgClass,ContactUs],
+  imports: [NgClass],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './start.html',
   styleUrl: './start.css',
