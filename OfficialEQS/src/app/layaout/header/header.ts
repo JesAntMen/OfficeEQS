@@ -39,7 +39,7 @@ export class Header {
 
   encabezado: Encabezado[] = [
     { id: 1, nombre: "Inicio", ruta:"/" },
-    { id: 2, nombre: "Quienes Somos", ruta:"/About-Us" },
+    { id: 2, nombre: "Quienes Somos", ruta:"/about-us" },
     { id: 3, nombre: "Calidad" },
     { id: 4, nombre: "Medio Ambiente" },
     { id: 5, nombre: "Seguridad" },
