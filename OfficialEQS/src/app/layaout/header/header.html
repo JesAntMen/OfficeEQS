@@ -1,4 +1,4 @@
-<header class="fixed w-full h-auto z-50">
+<header class="fixed top-0 left-0 w-full z-50">
   <div class="flex flex-col bg-cyan-100/30 backdrop-blur-sm">
     <div class="flex justify-between w-full h-20 px-5">
       <div class="w-52 p-2.5">
@@ -6,28 +6,35 @@
           <img class="w-full h-full" src="https://www.eqsinternational.com/Image/LogoEQS.webp" alt="">
         </a>
       </div>
+
       <div class="flex items-center justify-center h-full">
+        <!-- Desktop menu -->
         <div class="h-full hidden lg:inline-block">
           <nav class="h-full">
             <ul class="flex items-center justify-center text-center h-full gap-5">
               @for (orden of encabezado; track orden.id) {
-              <li class="font-semibold hover:font-bold hover:scale-110">
-                <a (click)="closeMenu(); closeMenuLogin()" routerLinkActive="font-bold"
-                  [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }" [routerLink]="orden.ruta">
-                  {{ orden.nombre }}
-                </a>
-              </li>
+                <li class="font-semibold hover:font-bold hover:scale-110">
+                  <a
+                    (click)="closeMenu(); closeMenuLogin()"
+                    routerLinkActive="font-bold"
+                    [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }"
+                    [routerLink]="orden.ruta"
+                  >
+                    {{ orden.nombre }}
+                  </a>
+                </li>
               }
+
               <li>
                 <button class="cursor-pointer hover:scale-105" (click)="toggleMenuLogin()">
-                  <span class="material-symbols-outlined">
-                    login
-                  </span>
+                  <span class="material-symbols-outlined">login</span>
                 </button>
               </li>
             </ul>
           </nav>
         </div>
+
+        <!-- Mobile hamburger -->
         <div class="flex items-center justify-center pl-5 lg:hidden h-full">
           <button class="cursor-pointer h-full" (click)="toggleMenu()">
             <span class="material-symbols-outlined">
@@ -38,58 +45,81 @@
       </div>
     </div>
   </div>
+
+  <!-- Mobile menu -->
   @if (menuOpen) {
-  <div class="p-7.5 z-10 lg:hidden h-screen  bg-cyan-100/30 backdrop-blur-sm">
-    <ul class="flex flex-col h-full gap-5">
-      @for (orden of encabezado; track orden.id) {
-      <li class="font-semibold hover:font-bold">
-        <a (click)="closeMenu(); closeMenuLogin()" routerLinkActive="font-bold underline"
-          [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }" [routerLink]="orden.ruta">
-          {{ orden.nombre }}
-        </a>
-      </li>
-      }
-      <li>
-        <button class="cursor-pointer hover:scale-105" (click)="toggleMenuLogin()">
-          <span class="material-symbols-outlined">
-            login
-          </span>
-        </button>
-      </li>
-    </ul>
-  </div>
+    <div class="p-7.5 z-10 lg:hidden h-screen bg-cyan-100/30 backdrop-blur-sm">
+      <ul class="flex flex-col h-full gap-5">
+        @for (orden of encabezado; track orden.id) {
+          <li class="font-semibold hover:font-bold">
+            <a
+              (click)="closeMenu(); closeMenuLogin()"
+              routerLinkActive="font-bold underline"
+              [routerLinkActiveOptions]="{ exact: orden.ruta === '/' }"
+              [routerLink]="orden.ruta"
+            >
+              {{ orden.nombre }}
+            </a>
+          </li>
+        }
+
+        <li>
+          <button class="cursor-pointer hover:scale-105" (click)="toggleMenuLogin()">
+            <span class="material-symbols-outlined">login</span>
+          </button>
+        </li>
+      </ul>
+    </div>
   }
-  @if(isOpenLogin){
-  <div class="h-screen flex flex-col bg-cyan-100/30 backdrop-blur-sm items-center justify-center">
+
+  <!-- ✅ LOGIN OVERLAY centrado perfecto -->
+  @if (isOpenLogin) {
+    <!-- Fondo / overlay -->
     <div
-      class="flex flex-col border-2 border-[#000066] items-center gap-2.5 justify-center  shadow-xl rounded-lg  bg-cyan-100/30 p-7">
-      <div class="">
-        <span class="material-symbols-outlined icon-big">
-          account_circle
-        </span>
-      </div>
-      <div class="">
-        <h1 class="font-semibold text-[30px]">LOGIN</h1>
-      </div>
-      <div class="grid gap-7 text-[px]">
-        <div class="flex flex-col gap-2.5">
-          <label for="User">User</label>
-          <input id="User" type="text" placeholder="User"
-            class="border-2 border-[#000066] rounded-lg p-2.5 outline-none focus:outline-none ring-0 focus:ring-0" />
+      class="fixed inset-0 z-50 flex items-center justify-center bg-cyan-100/30 backdrop-blur-sm"
+      (click)="closeMenuLogin()"
+    >
+      <!-- Modal -->
+      <div
+        class="w-[min(92vw,420px)] rounded-2xl border-2 border-[#000066] shadow-xl bg-white/70 p-7"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="flex flex-col items-center gap-4">
+          <span class="material-symbols-outlined text-[80px]! text-[#000066]">
+            account_circle
+          </span>
+          <h1 class="font-semibold text-[30px]">LOGIN</h1>
         </div>
-        <div class="flex flex-col gap-2.5">
-          <label for="User">Password</label>
-          <input id="User" type="text" placeholder="Password"
-            class="border-2 border-[#000066] rounded-lg p-2.5 outline-none focus:outline-none ring-0 focus:ring-0" />
-        </div>
-        <div class="flex items-center justify-center w-full">
+
+        <div class="mt-6 grid gap-5">
+          <div class="flex flex-col gap-2">
+            <label for="User">User</label>
+            <input
+              id="User"
+              type="text"
+              placeholder="User"
+              class="border-2 border-[#000066] rounded-lg p-2.5 outline-none focus:outline-none"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="Password">Password</label>
+            <input
+              id="Password"
+              type="password"
+              placeholder="Password"
+              class="border-2 border-[#000066] rounded-lg p-2.5 outline-none focus:outline-none"
+            />
+          </div>
+
           <button
-            class="rounded-lg w-[90%] p-3.5 cursor-pointer border-2 border-[#000066] hover:bg-green-600 hover:text-white!">
+            class="rounded-lg w-full p-3 cursor-pointer border-2 border-[#000066]
+                   hover:bg-green-600! hover:text-white!"
+          >
             Login
           </button>
         </div>
       </div>
     </div>
-  </div>
   }
 </header>
