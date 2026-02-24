@@ -1,58 +1,69 @@
 <div class="z-20 w-full h-auto lg:h-screen">
   <div class="py-24 flex items-center justify-center min-h-screen px-4">
-    <div class="grid grid-cols-2 w-full max-w-3xl gap-6 p-6 md:p-8 rounded-2xl inset-shadow-2xs shadow-xl/30">
-
+    <form (ngSubmit)="submit()" class="grid grid-cols-2 w-full max-w-3xl gap-6 p-6 md:p-8 rounded-2xl inset-shadow-2xs shadow-xl/30">
+      <!--Encabezado-->
       <div class="col-span-2 text-center">
         <h1 class="text-3xl font-bold tracking-wide">CONTÁCTANOS</h1>
         <p class="text-sm opacity-80 mt-1">Déjanos tus datos y te contactaremos.</p>
       </div>
-
+      <!--Nombre-->
       <div class="col-span-2 lg:col-span-1">
         <label for="nombre" class="text-sm font-medium">Nombre</label>
-        <input id="nombre" class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Nombre" type="text">
+        <input id="nombre" [formField]="sendCustomer.name" placeholder="Nombre" type="text">
       </div>
-
+      <!--Apellido-->
       <div class="col-span-2 lg:col-span-1">
-        <label for="apellido" class="text-sm font-medium">Apellido</label>
-        <input id="apellido"
-          class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Apellido" type="text">
+        <label for="apellido">Apellido</label>
+        <input id="apellido" [formField]="sendCustomer.lastname" placeholder="Apellido" type="text">
       </div>
-
+      <!--Correo-->
       <div class="col-span-2">
-        <label for="email" class="text-sm font-medium">Correo</label>
-        <input id="email" class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Correo" type="email">
+        <label for="email">Correo</label>
+        <input id="email" [formField]="sendCustomer.emailcustomer" placeholder="Correo" type="email">
       </div>
-
+      <!--Telefono-->
       <div class="col-span-2 lg:col-span-1">
-        <label for="telefono" class="text-sm font-medium">Teléfono</label>
-        <input id="telefono"
-          class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Teléfono" type="text">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" [formField]="sendCompany.phonenumber" placeholder="Teléfono" type="text">
       </div>
-
+      <!--Empresa-->
       <div class="col-span-2 lg:col-span-1">
-        <label for="empresa" class="text-sm font-medium">Empresa</label>
-        <input id="empresa"
-          class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Empresa" type="text">
+        <label for="empresa">Empresa</label>
+        <input id="empresa" [formField]="sendCompany.namecompany" placeholder="Empresa" type="text">
       </div>
+      <!--Servicios-->
+      <div class="col-span-2 lg:col-span-1">
+        <label for="servicios">Categoria</label>
+        <select [formField]="sendCustomer.services[0].nameservice" id="servicios">
+          <option value="">Seleccione una Categoría</option>
+          @for(catalogo of categorias; track catalogo){
+          <option value="{{catalogo}}">{{catalogo}} </option>
+          }
 
+        </select>
+      </div>
+      <!--Servicios Especificos-->
+      <div class="col-span-2 lg:col-span-1">
+        <label for="serviciosEspecifico">Servicio</label>
+        <select [formField]="sendCustomer.services[0].namespecific" id="serviciosEspecifico">
+          <option value="">Seleccione un servicio</option>
+          @for(services of categorias2;track services){
+          <option value="{{services}}">{{services}}</option>
+          }
+        </select>
+      </div>
+      <!--Mensaje General-->
       <div class="col-span-2">
-        <label for="Mensaje" class="text-sm font-medium">Mensaje</label>
-        <textarea id="Mensaje" rows="2"
-          class="mt-1 w-full bg-transparent border-b-2 border-black/60 outline-none focus:border-black"
-          placeholder="Mensaje"></textarea>
+        <label for="Mensaje">Mensaje</label>
+        <textarea id="Mensaje" [formField]="sendCompany.message" rows="2" placeholder="Mensaje"></textarea>
       </div>
-
+      <!--Boton enviar -->
       <div class="col-span-2 flex justify-center pt-2">
-        <button type="button"
+        <button type="submit"
           class="px-8 py-2.5 rounded-xl hover:bg-green-700 hover:text-white! font-semibold inset-shadow-2xs shadow-xl/30 hover:opacity-90 active:scale-95 transition">
           Enviar
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </div>
