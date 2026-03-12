@@ -45,7 +45,7 @@
       <!--Servicios Especificos-->
       <div class="col-span-2 lg:col-span-1">
         <label for="serviciosEspecifico">Servicio</label>
-        <select [formField]="sendCustomer.services[0].namespecific" id="serviciosEspecifico">
+        <select [formField]="sendCustomer.services[0].namespecific[0]" id="serviciosEspecifico">
           <option value="">Seleccione un servicio</option>
           @for(services of categorias2;track services){
           <option value="{{services}}">{{services}}</option>

@@ -1,6 +1,6 @@
 export interface ServiceItem {
   nameservice: string;
-  namespecific: string;
+  namespecific: string[];
 }
 
 export interface Destination {

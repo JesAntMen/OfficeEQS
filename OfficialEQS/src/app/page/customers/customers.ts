@@ -56,7 +56,5 @@ export class Customers {
     { id: 40, link: "https://www.eqsinternational.com/Customer/1.40.webp" },
     { id: 41, link: "https://www.eqsinternational.com/Customer/1.41.webp" },
     { id: 42, link: "https://www.eqsinternational.com/Customer/1.42.webp" },
-    { id: 43, link: "https://www.eqsinternational.com/Customer/1.43.webp" },
-    { id: 44, link: "https://www.eqsinternational.com/Customer/1.44.webp" },
   ]
 }
